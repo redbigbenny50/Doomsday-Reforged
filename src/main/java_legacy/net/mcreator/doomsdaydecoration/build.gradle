@@ -1,0 +1,77 @@
+plugins {
+    id 'java-library'
+    id 'eclipse'
+    id 'idea'
+    id 'net.neoforged.gradle.userdev' version '7.0.171'
+}
+
+version = '1.21.1-1.0.0'
+group = 'net.mcreator.doomsdaydecoration'
+
+base {
+    archivesName = 'doomsdaydecoration'
+}
+
+// NeoForge requires Java 21 for 1.21.1
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+runs {
+    configureEach {
+        systemProperty 'forge.logging.markers', 'REGISTRIES'
+        systemProperty 'forge.logging.console.level', 'debug'
+        modSource project.sourceSets.main
+    }
+
+    client {
+        systemProperty 'forge.enabledGameTestNamespaces', 'doomsdaydecoration'
+    }
+
+    server {
+        systemProperty 'forge.enabledGameTestNamespaces', 'doomsdaydecoration'
+        programArgument '--nogui'
+    }
+
+    gameTestServer {
+        systemProperty 'forge.enabledGameTestNamespaces', 'doomsdaydecoration'
+    }
+
+    data {
+        programArguments.addAll '--mod', 'doomsdaydecoration',
+                '--all',
+                '--output', file('src/generated/resources/').getAbsolutePath(),
+                '--existing', file('src/main/resources/').getAbsolutePath()
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    mavenLocal()
+}
+
+dependencies {
+    // NeoForge 1.21.1 — check https://projects.neoforged.net/neoforged/neoforge for the latest 21.1.x build
+    implementation "net.neoforged:neoforge:21.1.172"
+}
+
+// Ensure resources are properly processed
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+        minecraft_version      : '1.21.1',
+        minecraft_version_range: '[1.21.1,1.22)',
+        neo_version            : '21.1.172',
+        neo_version_range      : '[21.1,)',
+        loader_version_range   : '[4,)',
+        mod_id                 : 'doomsdaydecoration',
+        mod_name               : 'Doomsday Decoration',
+        mod_license            : 'All Rights Reserved',
+        mod_version            : project.version,
+        mod_authors            : 'doomsdaymod',
+        mod_description        : 'Doomsday Decoration mod'
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/neoforge.mods.toml']) {
+        expand replaceProperties
+    }
+}

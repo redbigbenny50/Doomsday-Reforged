@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reforged Doomsday</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__inner">
+        <p class="kicker">Reforged</p>
+        <h1>Doomsday</h1>
+        <p class="lead">
+          A NeoForge-based rebuild of the Doomsday Decoration mod, targeting modern
+          Minecraft (1.21.1) with updated tooling and fixes.
+        </p>
+        <div class="hero__meta">
+          <span>MC 1.21.1</span>
+          <span>NeoForge 21.1.x</span>
+          <span>Java 21</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <section id="overview">
+        <h2>Overview</h2>
+        <p>
+          Reforged Doomsday is a modernization pass on Doomsday Decoration. The goal is
+          to keep the original content while making it buildable and stable on current
+          NeoForge versions.
+        </p>
+      </section>
+
+      <section id="requirements">
+        <h2>Requirements</h2>
+        <ul>
+          <li>Java 21 (Eclipse Adoptium recommended)</li>
+          <li>Minecraft 1.21.1</li>
+          <li>NeoForge 21.1.x</li>
+        </ul>
+      </section>
+
+      <section id="setup">
+        <h2>Setup</h2>
+        <ol>
+          <li>Clone the repo.</li>
+          <li>Set Java 21 for Gradle (see below).</li>
+          <li>Build or run the dev client.</li>
+        </ol>
+        <pre><code class="language-powershell">$env:JAVA_HOME = "C:\Path\To\jdk-21"
+$env:Path = "$env:JAVA_HOME\bin;$env:Path"</code></pre>
+      </section>
+
+      <section id="build-run">
+        <h2>Build / Run</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Compile</h3>
+            <pre><code class="language-powershell">.\gradlew compileJava</code></pre>
+          </div>
+          <div class="card">
+            <h3>Dev Client</h3>
+            <pre><code class="language-powershell">.\gradlew runClient</code></pre>
+          </div>
+          <div class="card">
+            <h3>Build Jar</h3>
+            <pre><code class="language-powershell">.\gradlew build</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="troubleshooting">
+        <h2>Troubleshooting</h2>
+        <ul>
+          <li>If Gradle complains about Java 8, your shell is not using Java 21.</li>
+          <li>If blocks are non-solid, check collision/shape settings in the code.</li>
+          <li>Use a clean test world when validating fixes.</li>
+        </ul>
+      </section>
+
+      <section id="credits">
+        <h2>Credits</h2>
+        <p>
+          Original content by the Doomsday Decoration authors. This project is a
+          compatibility-focused rebuild for modern NeoForge.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Reforged Doomsday · Documentation</p>
+    </footer>
+  </body>
+</html>

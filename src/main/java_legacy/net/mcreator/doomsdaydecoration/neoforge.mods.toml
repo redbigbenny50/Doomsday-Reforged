@@ -1,0 +1,25 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "All Rights Reserved"
+
+[[mods]]
+    modId = "doomsdaydecoration"
+    version = "${mod_version}"
+    displayName = "Doomsday Decoration"
+    description = '''
+        Doomsday Decoration mod for NeoForge 1.21.1.
+    '''
+
+[[dependencies.doomsdaydecoration]]
+    modId = "neoforge"
+    type = "required"
+    versionRange = "[21.1,)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.doomsdaydecoration]]
+    modId = "minecraft"
+    type = "required"
+    versionRange = "[1.21.1,1.22)"
+    ordering = "NONE"
+    side = "BOTH"
